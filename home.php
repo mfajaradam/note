@@ -11,6 +11,12 @@
     <title>Hello, world!</title>
   </head>
   <body>
+    <?php
+    session_start();
+    if ($_SESSION['status'] != 'login') {
+      header("location:login.php?msg=belumlogin");
+    }
+    ?>
   <header class="p-3 bg-dark text-white">
     <div class="container-fluid">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -25,13 +31,25 @@
         </ul>
 
         <div class="text-end">
-        <a class="btn btn-danger" href="login.php" role="button">Logout</a>
+          <a class="btn btn-danger" href="logout.php" role="button">Logout</a>
         </div>
       </div>
     </div>
   </header>
 
     <div id="home" class="p-5 mb-4 bg-light rounded-3">
+    <?php
+      // require_once('database.php');
+      // if (!isset($_SESSION['username'])) {
+      //   $user = $_SESSION['username'];
+      //   echo "welcome $user";
+      // } else {
+      //   echo "gagal masuk usernamenya";
+      // }
+      // echo "welcome, {$_SESSION['username']}";
+
+
+      ?>
         <div class="container-fluid py-5 text-center">
             <h1 class="display-5 fw-bold">My Note 2024</h1>
             <p style="margin-left: 18%;" class="col-md-8 fs-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi laudantium facilis officiis odio omnis quaerat illum eius minus repudiandae in!.</p>

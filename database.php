@@ -43,3 +43,18 @@ function hapus($ids) {
     $sql = mysqli_query($conn, "DELETE FROM notes WHERE id = '$ids'");
     return $sql;
 }
+
+function cek_login($username,$password) {
+    global $conn;
+    $uname = $username;
+    $upass = $password;
+
+    $sql = mysqli_query($conn,"SELECT * FROM user WHERE username = '$uname' AND password = MD5('$upass')");
+    $result = mysqli_num_rows($sql);
+
+    if ($result > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}

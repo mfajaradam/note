@@ -16,6 +16,12 @@
     <title>Hello, world!</title>
   </head>
   <body>
+  <?php
+    session_start();
+    if ($_SESSION['status'] != 'login') {
+      header("location:login.php?msg=belumlogin");
+    }
+    ?>
   <header class="p-3 bg-dark text-white">
     <div class="container-fluid">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -44,7 +50,7 @@
     <div class="button pb-3">
     <a class="btn btn-primary" href="add_data.php" role="button">Tambah Data</a>
     </div>
-    <table class="table w-75" style="margin: auto;">
+    <table class="table w-100" style="margin: auto;">
   <thead>
     <tr>
       <th scope="col" class="" >no</th>

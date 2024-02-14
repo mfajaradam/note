@@ -37,6 +37,12 @@ if (isset($_POST["submit"])) {
     <title>UBAH NOTE</title>
   </head>
   <body>
+  <?php
+    session_start();
+    if ($_SESSION['status'] != 'login') {
+      header("location:login.php?msg=belumlogin");
+    }
+    ?>
   <header class="p-3 bg-dark text-white">
     <div class="container-fluid">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">

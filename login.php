@@ -1,6 +1,6 @@
 <?php
     require_once("database.php");
-    ob_start();
+    session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -44,18 +44,28 @@
 
 
     <?php
-        if(isset($_POST["submit"])){
-            $username = $_POST["usernames"];
-            $password = $_POST["passwords"];
-            $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
-            $result = mysqli_query($conn,$sql);
-            $rowcount = mysqli_num_rows($result);
-            if($rowcount == 1) {
-                header("location:home.php");
-            } else {
-                echo "gagal login";
+            if (isset($_POST["submit"])) {
+                if (cek_login($_POST['usernames'],$_POST['passwords'])) {
+                    $_SESSION['username'] = $username;
+                    $_SESSION['status'] = "login";
+                    header("location:home.php");
+                } else {
+                    header("location:login.php?msg=gagal");
+                }
             }
-        }
+
+        // if(isset($_POST["submit"])){
+        //     $username = $_POST["usernames"];
+        //     $password = $_POST["passwords"];
+        //     $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+        //     $result = mysqli_query($conn,$sql);
+        //     $rowcount = mysqli_num_rows($result);
+        //     if($rowcount == 1) {
+        //         header("location:home.php");
+        //     } else {
+        //         echo "gagal login";
+        //     }
+        // }
     ?>
 
 
